@@ -1,7 +1,12 @@
 {
-  "name": "mindar-nextjs",
+  "name": "ar-image-tracking",
   "version": "0.1.0",
   "private": true,
+  "overrides": {
+    "mind-ar": {
+      "canvas": "npm:empty-npm-package@1.0.0"
+    }
+  },
   "scripts": {
     "dev": "next dev",
     "dev:https": "next dev & npx local-ssl-proxy --source 3443 --target 3000",
@@ -24,6 +29,7 @@
   "devDependencies": {
     "@types/three": "^0.150.1",
     "autoprefixer": "^10.4.23",
+    "empty-npm-package": "^1.0.0",
     "eslint": "^9.39.2",
     "eslint-config-next": "^16.1.1",
     "local-ssl-proxy": "^2.0.5",
