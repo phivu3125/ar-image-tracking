@@ -115,36 +115,38 @@ export default function ARViewer() {
   }
 
   return (
-    <div className="ar-container">
-      <div 
-        ref={containerRef} 
-        className="absolute inset-0"
-      />
+    <>
+      {/* AR Container */}
+      <div className="ar-container">
+        <div 
+          ref={containerRef} 
+          className="absolute inset-0"
+        />
 
-      {isLoading && (
-        <div className="absolute inset-0 flex items-center justify-center bg-black/80 text-white">
-          <div className="text-center">
-            <div className="animate-spin w-12 h-12 border-4 border-white border-t-transparent rounded-full mx-auto mb-4" />
-            <p>Loading AR Experience...</p>
-            <p className="text-sm text-gray-400 mt-2">
-              Please allow camera access
-            </p>
+        {isLoading && (
+          <div className="absolute inset-0 flex items-center justify-center bg-black/80 text-white">
+            <div className="text-center">
+              <div className="animate-spin w-12 h-12 border-4 border-white border-t-transparent rounded-full mx-auto mb-4" />
+              <p>Loading AR Experience...</p>
+              <p className="text-sm text-gray-400 mt-2">
+                Please allow camera access
+              </p>
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
 
-      {/* Back button */}
+      {/* UI Elements - OUTSIDE ar-container to avoid overflow:hidden clipping */}
       <a
         href="/"
-        className="absolute top-4 left-4 px-4 py-2 bg-black/70 backdrop-blur-sm text-white rounded-lg hover:bg-black/90 transition z-50 safe-area-top"
+        className="ar-back-btn px-4 py-2 bg-black/70 backdrop-blur-sm text-white rounded-full hover:bg-black/90 transition flex items-center justify-center"
       >
         ← Back
       </a>
 
-      {/* Instructions overlay */}
-      <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent text-white text-center z-50 safe-area-bottom">
-        <p className="text-sm font-medium">Point your camera at the target image</p>
-      </div>
-    </div>
+      <p className="ar-instructions text-sm font-medium text-white bg-black/70 backdrop-blur-sm px-4 py-2 rounded-full whitespace-nowrap">
+        Point your camera at the target image
+      </p>
+    </>
   );
 }

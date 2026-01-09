@@ -72,6 +72,7 @@ body:has(.ar-container) {
   width: 100% !important;
   height: 100% !important;
   z-index: 2 !important;
+  pointer-events: none !important; /* Allow clicks to pass through to UI */
 }
 
 /* Hide MindAR default UI */
@@ -89,5 +90,36 @@ body:has(.ar-container) {
   }
   .safe-area-bottom {
     padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* AR UI Elements - responsive positioning */
+.ar-back-btn {
+  position: fixed !important;
+  top: 16px;
+  left: 16px;
+  z-index: 9999;
+  pointer-events: auto;
+}
+
+.ar-instructions {
+  position: fixed !important;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+}
+
+/* Taller screens (tablet/desktop) - more spacing */
+@media (min-height: 700px) {
+  .ar-instructions {
+    bottom: calc(32px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+/* Very tall screens (large desktop) */
+@media (min-height: 900px) {
+  .ar-instructions {
+    bottom: calc(48px + env(safe-area-inset-bottom, 0px));
   }
 }
