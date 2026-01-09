@@ -115,8 +115,12 @@ export default function ARViewer() {
   }
 
   return (
-    <div className="relative w-screen h-screen">
-      <div ref={containerRef} className="w-full h-full" />
+    <div className="fixed inset-0 w-full h-full overflow-hidden">
+      <div 
+        ref={containerRef} 
+        className="absolute inset-0 w-full h-full"
+        style={{ minHeight: '100dvh' }}
+      />
 
       {isLoading && (
         <div className="absolute inset-0 flex items-center justify-center bg-black/80 text-white">
