@@ -115,11 +115,10 @@ export default function ARViewer() {
   }
 
   return (
-    <div className="fixed inset-0 w-full h-full overflow-hidden">
+    <div className="ar-container">
       <div 
         ref={containerRef} 
-        className="absolute inset-0 w-full h-full"
-        style={{ minHeight: '100dvh' }}
+        className="absolute inset-0"
       />
 
       {isLoading && (
@@ -137,14 +136,14 @@ export default function ARViewer() {
       {/* Back button */}
       <a
         href="/"
-        className="absolute top-4 left-4 px-4 py-2 bg-black/50 text-white rounded-lg hover:bg-black/70 transition z-10"
+        className="absolute top-4 left-4 px-4 py-2 bg-black/70 backdrop-blur-sm text-white rounded-lg hover:bg-black/90 transition z-50 safe-area-top"
       >
         ← Back
       </a>
 
       {/* Instructions overlay */}
-      <div className="absolute bottom-4 left-4 right-4 p-4 bg-black/50 text-white rounded-lg text-center z-10">
-        <p>Point your camera at the target image</p>
+      <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent text-white text-center z-50 safe-area-bottom">
+        <p className="text-sm font-medium">Point your camera at the target image</p>
       </div>
     </div>
   );
