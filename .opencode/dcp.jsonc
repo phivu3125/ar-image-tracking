@@ -1,0 +1,66 @@
+{
+	"enabled": true,
+	"debug": false,
+	// "minimal" shows prune activity without noise; "off" if you want silence
+	"pruneNotification": "off",
+	"turnProtection": {
+		"enabled": true,
+		// 3 turns = faster cleanup while still protecting recent context
+		"turns": 3
+	},
+	"tools": {
+		"settings": {
+			"nudgeEnabled": true,
+			// Nudge every 8 tool calls (slightly more aggressive than default 10)
+			"nudgeFrequency": 8,
+			// Protect state-modifying and critical workflow tools
+			"protectedTools": [
+				"write",
+				"edit",
+				"memory-read",
+				"memory-update",
+				"memory-search",
+				"observation",
+				"skill",
+				"skill_mcp",
+				"lsp_lsp_rename",
+				"lsp_lsp_find_references",
+				"lsp_lsp_goto_definition",
+				"lsp_lsp_code_actions",
+				"lsp_lsp_code_action_apply",
+				"lsp_lsp_organize_imports",
+				"bd_init",
+				"bd_claim",
+				"bd_done",
+				"bd_show",
+				"bd_reserve",
+				"bd_reservations",
+				"bd_sync"
+			]
+		},
+		"discard": {
+			"enabled": true
+		},
+		"extract": {
+			"enabled": true,
+			"showDistillation": false
+		}
+	},
+	"strategies": {
+		// Dedup = zero LLM cost, high impact - always enable
+		"deduplication": {
+			"enabled": true,
+			"protectedTools": []
+		},
+		// Supersede writes = zero cost, removes redundant write inputs after read
+		"supersedeWrites": {
+			"enabled": true
+		},
+		// Purge error inputs after 3 turns
+		"purgeErrors": {
+			"enabled": true,
+			"turns": 3,
+			"protectedTools": []
+		}
+	}
+}
