@@ -82,7 +82,39 @@ export default function ARViewer() {
   useEffect(() => {
     initAR();
 
+    // Handle orientation/resize changes
+    const handleResize = () => {
+      if (mindarRef.current && isStartedRef.current) {
+        const { renderer, camera } = mindarRef.current;
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        
+        renderer.setSize(width, height);
+        if (camera instanceof THREE.PerspectiveCamera) {
+          camera.aspect = width / height;
+          camera.updateProjectionMatrix();
+        }
+      }
+    };
+
+    // Debounce to avoid multiple rapid calls
+    let resizeTimeout: NodeJS.Timeout;
+    const debouncedResize = () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(handleResize, 100);
+    };
+
+    window.addEventListener('resize', debouncedResize);
+    window.addEventListener('orientationchange', () => {
+      // Delay to let browser finish rotation
+      setTimeout(handleResize, 200);
+    });
+
     return () => {
+      window.removeEventListener('resize', debouncedResize);
+      window.removeEventListener('orientationchange', debouncedResize);
+      clearTimeout(resizeTimeout);
+      
       // Safely cleanup - only stop if AR was started successfully
       if (mindarRef.current) {
         try {
