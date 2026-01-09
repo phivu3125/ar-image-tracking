@@ -5,7 +5,6 @@ const nextConfig: NextConfig = {
   // Turbopack config (Next.js 16+ default)
   turbopack: {
     resolveAlias: {
-      // Polyfill node modules for browser
       fs: { browser: "./src/polyfills/empty.js" },
       path: { browser: "./src/polyfills/empty.js" },
       crypto: { browser: "./src/polyfills/empty.js" },

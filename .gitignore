@@ -41,7 +41,8 @@ next-env.d.ts
 *.swo
 
 # Beads (optional - uncomment to ignore)
-# .beads/
+.beads/
 
 # OpenCode
-# .opencode/
+.opencode/
+
